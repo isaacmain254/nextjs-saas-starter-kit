@@ -6,7 +6,7 @@ import { SignOut } from "./signout-button";
 const Navbar = async () => {
   const session = await auth();
   return (
-    <div className="flex w-full justify-between px-5 py-3 items-center bg-slate-100">
+    <div className="flex w-full max-w-screen-2xl mx-auto justify-between px-5 py-3 items-center bg-slate-100">
       <div>
         <Link href="/">Logo</Link>
       </div>
