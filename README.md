@@ -1,35 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS SAAS Starter Kit
+
+This is a Next.js SaaS Starter Kit with built-in authentication (using NextAuth), payment subscription handling (using Stripe), and email functionality (via Resend). This starter kit is designed to handle recurring payments and manage the entire authentication flow, including account creation, login, logout, and password resets.
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the Repository
+
+To get started, clone the repository to your local machine:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/isaacmain254/nextjs-saas-starter-kit
+```
+### 2. Set up Environment Variables
+
+Create a **.env.local** file at the root of your project and add the following environment variables:
+
+```
+STRIPE_WEBHOOK_SECRET=""
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=""
+STRIPE_SECRET_KEY=""
+RESEND_API_KEY=""
+MONGODB_URI=""
+VERCEL_URL=""
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Explanation of the Environment Variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **STRIPE_WEBHOOK_SECRET:** This secret key is used for Stripe's webhook events, which notify your app about payment updates, subscription changes, and other events in your Stripe account. You can find this in your Stripe Dashboard under Webhooks.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:** This is your public Stripe API key. It’s safe to expose this key on the frontend, and it is used to create payment intents and handle client-side Stripe integrations.
 
-## Learn More
+- **STRIPE_SECRET_KEY:** This is your secret Stripe API key, which is used to interact with Stripe’s API on the server-side (e.g., for creating charges, managing subscriptions, etc.). Keep this secret and never expose it in your frontend code.
 
-To learn more about Next.js, take a look at the following resources:
+- **RESEND_API_KEY:** Resend is used for sending email notifications. Create an account on Resend to obtain your API key. You’ll use this to send welcome emails, password resets, etc.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **MONGODB_URI:** The URI to your MongoDB database. This connects your app to a database to store user data, authentication details, subscriptions, etc. Ensure your MongoDB is properly set up, either locally or with a cloud service like MongoDB Atlas.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **VERCEL_URL:** The URL of your deployed application on Vercel. This is useful in the email templates, particularly to insert your application's logo or dynamically build links. Make sure this is set to your Vercel app's URL.
 
-## Deploy on Vercel
+### 3. Install Dependencies
+
+```bash
+pnpm install
+```
+
+### 4. Run the app
+
+```bash
+pnpm dev
+```
+
+### 5.Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
